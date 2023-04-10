@@ -19,7 +19,7 @@
                     @if(isset($request->user()->login) && $request->user()->login == 'admin')
                             @include('layouts.navigationAdmin')
                         @else
-                            @include('layouts.navigation')
+                          {{-- @include('layouts.navigation') --}}
                         @endif
 
             <!-- Page Heading -->
