@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StaffController;
+use App\Http\Middleware\RoleMiddleware;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +24,16 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/staff', 'App\Http\Controllers\StaffController@create')->name('staff');
+
+Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:0'])->group(function () {
+    Route::get('/staff/create', [StaffController::class, 'create'])->name('staff.create');
+    Route::post('/staff', [StaffController::class, 'store'])->name('staff.store');
+    Route::delete('/staff', [StaffController::class, 'delete'])->name('staff.delete');
+});
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

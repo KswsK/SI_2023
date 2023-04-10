@@ -14,14 +14,14 @@ return new class () extends Migration {
     {
         Schema::create('announcements', function (Blueprint $table) {
             $table->id();
-//            $table->string('seller_login');
-//            $table->string('category');
-//            $table->string('title');
-//            $table->string('image')->nullable();
-//            $table->float('price');
-//            $table->longText('description');
-            (new App\Helpers\MigrateHelper())->migration($table);
-            $table->timestamps();
+            $table->string('seller_login');
+            $table->string('category');
+            $table->string('title');
+            $table->string('image')->nullable();
+            $table->float('price');
+            $table->longText('description');
+//            (new App\Helpers\MigrateHelper())->migration($table);
+//            $table->timestamps();
         });
     }
 
