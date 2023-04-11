@@ -15,13 +15,13 @@ return new class () extends Migration {
         Schema::create('boughts', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_announcement');
-//            $table->string('seller_login');
-//            $table->string('category');
-//            $table->string('title');
-//            $table->string('image')->nullable();
-//            $table->double('price');
-//            $table->longText('description');
-            (new App\Helpers\MigrateHelper())->migration($table);
+            $table->string('seller_login');
+            $table->string('category');
+            $table->string('title');
+            $table->string('image')->nullable();
+            $table->double('price');
+            $table->longText('description');
+            //(new App\Helpers\MigrateHelper())->migration($table);
             $table->string('buyer_login');
             $table->string('street');
             $table->string('city');

@@ -17,21 +17,7 @@
                     </x-nav-link>
                 </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('announcements.index')" :active="request()->routeIs('announcements.index')">
-                        {{ __('Browse offers') }}
-                    </x-nav-link>
-                </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('reported')" :active="request()->routeIs('reported')">
-                        {{ __('Reported Offers') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
-                        {{ __('Bad Users') }}
-                    </x-nav-link>
                 </div>
 
             </div>

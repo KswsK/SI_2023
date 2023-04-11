@@ -17,29 +17,8 @@
                     </x-nav-link>
                 </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('announcements.index')" :active="request()->routeIs('announcements.index')">
-                        {{ __('Browse offers') }}
-                    </x-nav-link>
-                </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('sell')" :active="request()->routeIs('sell')">
-                        {{ __('Sell product') }}
-                    </x-nav-link>
-                </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('your-offers')" :active="request()->routeIs('your-offers')">
-                        {{ __('Your offers') }}
-                    </x-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('history')" :active="request()->routeIs('history')">
-                        {{ __('Purchase history') }}
-                    </x-nav-link>
-                </div>
 
             </div>
 

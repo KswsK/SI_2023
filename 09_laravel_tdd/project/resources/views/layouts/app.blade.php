@@ -16,11 +16,11 @@
     <body class="font-sans antialiased">
             <div class="min-h-screen bg-gray-100" :request="$request">
 
-                    @if(isset($request->user()->login) && $request->user()->login == 'admin')
-                            @include('layouts.navigationAdmin')
-                        @else
-                          {{-- @include('layouts.navigation') --}}
-                        @endif
+{{--                    @if(isset($request->user()->login) && $request->user()->login == 'admin')--}}
+{{--                            include('layouts.navigationAdmin')--}}
+{{--                        @else--}}
+                         @include('layouts.navigation')
+{{--                        @endif--}}
 
             <!-- Page Heading -->
             @if (isset($header))
