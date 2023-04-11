@@ -15,30 +15,12 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                </div>
+                    @guest
+                        <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                            {{ __('login') }}
+                        </x-nav-link>
+                    @endguest
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('announcements.index')" :active="request()->routeIs('announcements.index')">
-                        {{ __('Browse offers') }}
-                    </x-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('sell')" :active="request()->routeIs('sell')">
-                        {{ __('Sell product') }}
-                    </x-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('your-offers')" :active="request()->routeIs('your-offers')">
-                        {{ __('Your offers') }}
-                    </x-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('history')" :active="request()->routeIs('history')">
-                        {{ __('Purchase history') }}
-                    </x-nav-link>
                 </div>
 
             </div>
@@ -50,6 +32,7 @@
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->login }}</div>
+
 
                             <div class="ml-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

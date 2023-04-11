@@ -5,33 +5,9 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                  <!--  <a href="{{ route('dashboard') }}">
                         <img src="{{asset('images/logo.png')}}" width="300px" height="250px" loading="lazy"/>
-                    </a>
-                </div>
-
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('announcements.index')" :active="request()->routeIs('announcements.index')">
-                        {{ __('Browse offers') }}
-                    </x-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('reported')" :active="request()->routeIs('reported')">
-                        {{ __('Reported Offers') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
-                        {{ __('Bad Users') }}
-                    </x-nav-link>
+                    </a> -->
                 </div>
 
             </div>
@@ -66,6 +42,14 @@
                                                 this.closest('form').submit();">
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
+
+
+                                @if(auth()->user()->role == 0)
+                                <x-dropdown-link :href="route('staff')">
+                                    {{ __('Staff') }}
+                                </x-dropdown-link>
+                                @endif
+
                             </form>
                         </x-slot>
                     </x-dropdown>
@@ -90,6 +74,7 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
         </div>
 
         <!-- Responsive Settings Options -->
