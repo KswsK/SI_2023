@@ -16,6 +16,7 @@
     <body class="font-sans antialiased">
             <div class="min-h-screen bg-gray-100" >
 
+
                 @if(auth()->check() && auth()->user()->login == 'admin')
                     @include('layouts.navigationAdmin')
                 @else

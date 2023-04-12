@@ -21,7 +21,7 @@ return new class () extends Migration {
             $table->float('price');
             $table->longText('description');
 //            (new App\Helpers\MigrateHelper())->migration($table);
-//            $table->timestamps();
+            $table->timestamps();
         });
     }
 
