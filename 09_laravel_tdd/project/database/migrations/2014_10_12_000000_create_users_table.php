@@ -19,6 +19,12 @@ return new class () extends Migration {
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+            $table->integer(column: 'role')->default(value(1));
+            //$table->integer('rating_sum')->nullable()->default(0);
+            //$table->integer('rating_count')->nullable()->default(0);
+            //$table->boolean('blocked')->default(false);
+
             $table->string('street')->nullable();
             $table->string('city')->nullable();
             $table->string('postcode')->nullable();

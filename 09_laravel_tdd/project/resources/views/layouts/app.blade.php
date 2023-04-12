@@ -14,14 +14,14 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-            <div class="min-h-screen bg-gray-100" :request="$request">
+            <div class="min-h-screen bg-gray-100" >
 
-{{--                    @if(isset($request->user()->login) && $request->user()->login == 'admin')--}}
-{{--                            include('layouts.navigationAdmin')--}}
-{{--                        @else--}}
-                         @include('layouts.navigation')
-{{--                        @endif--}}
 
+                @if(auth()->check() && auth()->user()->login == 'admin')
+                    @include('layouts.navigationAdmin')
+                @else
+                    @include('layouts.navigation')
+                @endif
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">
@@ -33,7 +33,7 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                @yield('content')
             </main>
         </div>
     </body>

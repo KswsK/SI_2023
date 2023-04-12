@@ -12,11 +12,20 @@ class UsersSeeder extends Seeder
      */
     public function run(): void
     {
+        // role?:
+        //0 - szef
+        //1 - pracownik  <- defaultowa
+        //2 - kierownik
+        //3 - recepcjonistka
+        //4 - magazynier
+        //5 - ksiegowa
+
         DB::table('users')->insert([
             'name' => 'John Doe',
             'login' => 'jdoe',
             'email' => 'john.doe@gmail.com',
             'password' => bcrypt('secret'),
+            'role' => 3
         ]);
 
         DB::table('users')->insert([
@@ -24,14 +33,15 @@ class UsersSeeder extends Seeder
             'login' => 'jpiotr',
             'email' => 'jan.piotr@gmail.com',
             'password' => bcrypt('secret'),
+            'role' => 4
         ]);
 
-
         DB::table('users')->insert([
-           'name' => 'Admin',
+           'name' => 'Szef',
            'login' => 'admin',
            'email' => 'admin@gmail.com',
-           'password' => bcrypt('9'),
+           'password' => bcrypt('admin'),
+            'role' => 0
         ]);
     }
 }

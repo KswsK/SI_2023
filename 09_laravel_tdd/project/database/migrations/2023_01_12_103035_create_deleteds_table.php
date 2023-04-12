@@ -21,6 +21,7 @@ return new class () extends Migration {
             $table->string('image')->nullable();
             $table->double('price');
             $table->longText('description');
+
 //            (new App\Helpers\MigrateHelper())->migration($table);
             $table->longText('reason');
             $table->timestamps();
