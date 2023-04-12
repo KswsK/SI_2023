@@ -1,12 +1,12 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
+        <div class="flex justify-center h-16">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="/">
-                        <img src="{{asset('images/logo.png')}}" width="300px" height="250px" loading="lazy"/>
+                    <a href="{{ route('dashboard') }}">
+                        <img src="{{asset('assets/images/logo.png')}}" width="50px" height="50px"/>
                     </a>
                 </div>
 
@@ -17,7 +17,7 @@
                     </x-nav-link>
                     @guest
                         <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
-                            {{ __('login') }}
+                            {{ __('Login') }}
                         </x-nav-link>
                     @endguest
 
