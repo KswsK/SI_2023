@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StockStatusController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StaffController;
+use App\Http\Controllers\Scheduler;
 use App\Http\Middleware\RoleMiddleware;
 
 
@@ -25,12 +26,21 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:1'])->group(function () {
+    Route::get('/scheduler', [Scheduler::class, 'show'])->name('scheduler');
+})->middleware(['auth', 'verified']);
+
+
+Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:1'])->group(function () {
+    Route::get('/stockStatus', [StockStatusController::class, 'show'])->name('stockStatus');
+})->middleware(['auth', 'verified']);
+
 Route::get('/staff', 'App\Http\Controllers\StaffController@create')->name('staff');
 
 Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:0'])->group(function () {
-    Route::get('/staff/create', [StaffController::class, 'create'])->name('staff.create');
-    Route::post('/staff', [StaffController::class, 'store'])->name('staff.store');
-    Route::delete('/staff', [StaffController::class, 'delete'])->name('staff.delete');
+    Route::get('/staff/create', [Scheduler::class, 'create'])->name('staff.create');
+    Route::post('/staff', [Scheduler::class, 'store'])->name('staff.store');
+    Route::delete('/staff', [Scheduler::class, 'delete'])->name('staff.delete');
 });
 
 
