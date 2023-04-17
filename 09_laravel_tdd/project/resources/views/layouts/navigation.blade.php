@@ -34,16 +34,18 @@
                         </x-nav-link>
                     </div>
                 @endif
-                <div class="hidden sm:flex sm:items-center sm:ml-6">
-                    <x-nav-link :href="route('scheduler')" :active="request()->routeIs('scheduler')">
-                        {{ __('Harmonogram') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden sm:flex sm:items-center sm:ml-6">
-                    <x-nav-link :href="route('stockStatus')" :active="request()->routeIs('stockStatus')">
-                        {{ __('Stan produktów') }}
-                    </x-nav-link>
-                </div>
+                    @if(auth()->user()->role == 1)
+                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <x-nav-link :href="route('scheduler')" :active="request()->routeIs('scheduler')">
+                            {{ __('Harmonogram') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <x-nav-link :href="route('stockStatus')" :active="request()->routeIs('stockStatus')">
+                            {{ __('Stan produktów') }}
+                        </x-nav-link>
+                    </div>
+                    @endif
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
