@@ -27,6 +27,13 @@
 
             <!-- Settings Dropdown -->
             @if(isset(Auth::user()->login))
+                @if(auth()->user()->role == 4)
+                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <x-nav-link :href="route('products')" :active="request()->routeIs('products')">
+                            {{ __('Produkty') }}
+                        </x-nav-link>
+                    </div>
+                @endif
                 @if(auth()->user()->role == 3)
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
                         <x-nav-link :href="route('roomSchedule')" :active="request()->routeIs('roomSchedule')">
