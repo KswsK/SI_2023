@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StockStatusController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Scheduler;
+use App\Http\Controllers\EmployeeScheduleController;
+use App\Http\Controllers\RoomScheduleController;
 use App\Http\Middleware\RoleMiddleware;
 
 
@@ -33,6 +35,14 @@ Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:1'])->group(funct
 
 Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:1'])->group(function () {
     Route::get('/stockStatus', [StockStatusController::class, 'show'])->name('stockStatus');
+})->middleware(['auth', 'verified']);
+
+Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:3'])->group(function () {
+    Route::get('/employeeSchedule', [EmployeeScheduleController::class, 'show'])->name('employeeSchedule');
+})->middleware(['auth', 'verified']);
+
+Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:3'])->group(function () {
+    Route::get('/roomSchedule', [RoomScheduleController::class, 'show'])->name('roomSchedule');
 })->middleware(['auth', 'verified']);
 
 Route::get('/staff', 'App\Http\Controllers\StaffController@create')->name('staff');

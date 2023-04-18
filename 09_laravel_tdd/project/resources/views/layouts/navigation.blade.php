@@ -27,6 +27,19 @@
 
             <!-- Settings Dropdown -->
             @if(isset(Auth::user()->login))
+                @if(auth()->user()->role == 3)
+                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <x-nav-link :href="route('roomSchedule')" :active="request()->routeIs('roomSchedule')">
+                            {{ __('Harmonogram sal') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <x-nav-link :href="route('employeeSchedule')" :active="request()->routeIs('employeeSchedule')">
+                            {{ __('Harmonogram pracownikow') }}
+                        </x-nav-link>
+                    </div>
+                @endif
+                @if(auth()->user()->role == 1)
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
                     <x-nav-link :href="route('scheduler')" :active="request()->routeIs('scheduler')">
                         {{ __('Harmonogram') }}
@@ -37,6 +50,7 @@
                         {{ __('Stan produktów') }}
                     </x-nav-link>
                 </div>
+                    @endif
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
