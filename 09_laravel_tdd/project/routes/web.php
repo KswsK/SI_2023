@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Raports;
 use App\Http\Controllers\StockStatusController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Scheduler;
@@ -48,6 +49,10 @@ Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:3'])->group(funct
 
 Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:4'])->group(function () {
     Route::get('/products', [Products::class, 'show'])->name('products');
+})->middleware(['auth', 'verified']);
+
+Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:5'])->group(function () {
+    Route::get('/raports', [Raports::class, 'show'])->name('raports');
 })->middleware(['auth', 'verified']);
 
 Route::get('/staff', 'App\Http\Controllers\StaffController@create')->name('staff');
