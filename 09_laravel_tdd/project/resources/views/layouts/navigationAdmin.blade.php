@@ -14,6 +14,11 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <x-nav-link :href="route('employees')" :active="request()->routeIs('employees')">
+                            {{ __('Lista pracowników') }}
+                        </x-nav-link>
+                    </div>
 
 
               </a>
