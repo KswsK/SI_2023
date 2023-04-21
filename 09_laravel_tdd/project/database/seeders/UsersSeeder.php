@@ -25,7 +25,8 @@ class UsersSeeder extends Seeder
             'login' => 'jdoe',
             'email' => 'john.doe@gmail.com',
             'password' => bcrypt('secret'),
-            'role' => 3
+            'role' => 3,
+            'facility' => 1
         ]);
 
         DB::table('users')->insert([
@@ -33,7 +34,8 @@ class UsersSeeder extends Seeder
             'login' => 'jpiotr',
             'email' => 'jan.piotr@gmail.com',
             'password' => bcrypt('secret'),
-            'role' => 4
+            'role' => 2,
+            'facility' => 2
         ]);
 
         DB::table('users')->insert([
@@ -41,7 +43,8 @@ class UsersSeeder extends Seeder
            'login' => 'admin',
            'email' => 'admin@gmail.com',
            'password' => bcrypt('admin'),
-            'role' => 0
+            'role' => 0,
+            'facility' => 0
         ]);
 
         DB::table('users')->insert([
@@ -49,31 +52,35 @@ class UsersSeeder extends Seeder
             'login' => 'user1',
             'email' => 'user1@gmail.com',
             'password' => bcrypt('user123'),
-            'role' => 1
+            'role' => 1,
+            'facility' => 1
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Magazynier',
+            'name' => 'Marek Magazynier',
             'login' => 'magazynier',
             'email' => 'magazynier@gmail.com',
             'password' => bcrypt('paczki123'),
-            'role' => 4
+            'role' => 4,
+            'facility' => 2
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Recepcjonistka',
+            'name' => 'Renia Recepcjonistka',
             'login' => 'recepcjonistka',
             'email' => 'recepcjonistka@gmail.com',
             'password' => bcrypt('recepcja123'),
-            'role' => 3
+            'role' => 3,
+            'facility' => 3
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Ksiegowa',
+            'name' => 'Kasia Ksiegowa',
             'login' => 'ksiegowa',
             'email' => 'ksiegowa@gmail.com',
             'password' => bcrypt('ksiegowa123'),
-            'role' => 5
+            'role' => 5,
+            'facility' => 2
         ]);
     }
 }

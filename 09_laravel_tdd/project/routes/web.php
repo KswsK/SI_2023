@@ -8,6 +8,7 @@ use App\Http\Controllers\Scheduler;
 use App\Http\Controllers\EmployeeScheduleController;
 use App\Http\Controllers\RoomScheduleController;
 use App\Http\Controllers\Products;
+use App\Http\Controllers\Employees;
 use App\Http\Middleware\RoleMiddleware;
 
 
@@ -30,10 +31,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:0'])->group(function () {
+    Route::get('/employees', [Employees::class, 'show'])->name('employees');
+})->middleware(['auth', 'verified']);
+
 Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:1'])->group(function () {
     Route::get('/scheduler', [Scheduler::class, 'show'])->name('scheduler');
 })->middleware(['auth', 'verified']);
-
 
 Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:1'])->group(function () {
     Route::get('/stockStatus', [StockStatusController::class, 'show'])->name('stockStatus');
@@ -63,7 +67,7 @@ Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:0'])->group(funct
     Route::delete('/staff', [Scheduler::class, 'delete'])->name('staff.delete');
 });
 
-
+Route::get("/employee/{id}", [Employees::class,"profiles"]);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -21,6 +21,7 @@ return new class () extends Migration {
             $table->string('password');
 
             $table->integer(column: 'role')->default(value(1));
+            $table->integer(column: 'facility');
             //$table->integer('rating_sum')->nullable()->default(0);
             //$table->integer('rating_count')->nullable()->default(0);
             //$table->boolean('blocked')->default(false);
