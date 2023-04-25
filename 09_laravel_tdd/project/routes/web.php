@@ -9,6 +9,7 @@ use App\Http\Controllers\EmployeeScheduleController;
 use App\Http\Controllers\RoomScheduleController;
 use App\Http\Controllers\Products;
 use App\Http\Controllers\Employees;
+use App\Http\Controllers\Structures;
 use App\Http\Middleware\RoleMiddleware;
 
 
@@ -33,6 +34,10 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:0'])->group(function () {
     Route::get('/employees', [Employees::class, 'show'])->name('employees');
+})->middleware(['auth', 'verified']);
+
+Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:0'])->group(function () {
+    Route::get('/structures', [Structures::class, 'show'])->name('structures');
 })->middleware(['auth', 'verified']);
 
 Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:1'])->group(function () {
