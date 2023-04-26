@@ -9,7 +9,10 @@
             </p>
             @foreach ($users as $user)
                 @if ($user->role == 2)
-                    <li><a href="/employee/{{$user->id}}">{{$user->name}}</a></li>
+                    <div class="flex items-center space-x-2">
+                        <li><a href="/employee/{{$user->id}}">{{$user->name}}</a></li>
+                        @include('employees.role-dropdown', ['user' => $user])
+                    </div>
                 @endif
             @endforeach
             <p class="text-lg ">
@@ -17,7 +20,10 @@
             </p>
             @foreach ($users as $user)
                 @if ($user->role == 3)
-                    <li><a href="/employee/{{$user->id}}">{{$user->name}}</a></li>
+                    <div class="flex items-center space-x-2">
+                        <li><a href="/employee/{{$user->id}}">{{$user->name}}</a></li>
+                        @include('employees.role-dropdown', ['user' => $user])
+                    </div>
                 @endif
             @endforeach
             <p class="text-lg ">
@@ -25,7 +31,10 @@
             </p>
             @foreach ($users as $user)
                 @if ($user->role == 4)
-                    <li><a href="/employee/{{$user->id}}">{{$user->name}}</a></li>
+                    <div class="flex items-center space-x-2">
+                        <li><a href="/employee/{{$user->id}}">{{$user->name}}</a></li>
+                        @include('employees.role-dropdown', ['user' => $user])
+                    </div>
                 @endif
             @endforeach
             <p class="text-lg ">
@@ -33,7 +42,10 @@
             </p>
             @foreach ($users as $user)
                 @if ($user->role == 5)
-                    <li><a href="/employee/{{$user->id}}">{{$user->name}}</a></li>
+                    <div class="flex items-center space-x-2">
+                        <li><a href="/employee/{{$user->id}}">{{$user->name}}</a></li>
+                        @include('employees.role-dropdown', ['user' => $user])
+                    </div>
                 @endif
             @endforeach
             <p class="text-lg ">
@@ -41,12 +53,13 @@
             </p>
             @foreach ($users as $user)
                 @if ($user->role == 1)
-                    <li><a href="/employee/{{$user->id}}">{{$user->name}}</a></li>
+                    <div class="flex items-center space-x-2">
+                        <li><a href="/employee/{{$user->id}}">{{$user->name}}</a></li>
+                        @include('employees.role-dropdown', ['user' => $user])
+                    </div>
                 @endif
             @endforeach
         </div>
     </div>
 
-
 @endsection
-

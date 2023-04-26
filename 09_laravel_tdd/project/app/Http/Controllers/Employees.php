@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use App\Models\User;
+
 
 class Employees extends Controller
 {
@@ -19,5 +22,21 @@ class Employees extends Controller
         $user = DB::table('users')->where('id', $id)->first();
         return view('employees.profile',['user' => $user]);
     }
+
+    public function changeRole(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        if ($user) {
+            $role = $request->input('role');
+            $user->role = $role;
+            $user->save();
+
+            return redirect()->back()->with('success', 'Rola użytkownika została zaktualizowana.');
+        }
+
+        return redirect()->back()->with('error', 'Nie można znaleźć użytkownika.');
+    }
+
 
 }

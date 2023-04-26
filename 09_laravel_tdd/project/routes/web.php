@@ -80,4 +80,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::put('/employee/change-role/{id}', 'App\Http\Controllers\Employees@changeRole');
+
 require __DIR__.'/auth.php';
