@@ -66,6 +66,18 @@
                     </select>
                 </div>
             </div>
+            <div class="form-group row">
+                <h2 class="text-lg font-medium text-gray-900">
+                    {{ __('Facility:') }}
+                </h2>
+                <div class="col-sm-10">
+                    <select name="facility" id="role" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+            </div>
 
             <div class="form-group row">
                 <div class="flex items-center gap-4 mt-4">

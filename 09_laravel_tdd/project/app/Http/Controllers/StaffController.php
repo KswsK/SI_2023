@@ -35,6 +35,7 @@ class StaffController extends Controller
             ],
             'password_confirmation' => 'required',
             'role' => 'required|numeric|min:1|max:5',
+            'facility' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -48,6 +49,7 @@ class StaffController extends Controller
         $user->email = $request->input('email');
         $user->password = bcrypt($request->input('password'));
         $user->role = $request->input('role');
+        $user->facility = $request->input('facility');
         $user->save();
 
         // Redirect the user to the staff with a success message
