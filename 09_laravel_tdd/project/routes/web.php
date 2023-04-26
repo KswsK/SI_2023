@@ -11,6 +11,7 @@ use App\Http\Controllers\Products;
 use App\Http\Controllers\Employees;
 use App\Http\Controllers\Structures;
 use App\Http\Controllers\myObject;
+use App\Http\Controllers\StaffController;
 use App\Http\Middleware\RoleMiddleware;
 
 
@@ -72,9 +73,9 @@ Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:2'])->group(funct
 Route::get('/staff', 'App\Http\Controllers\StaffController@create')->name('staff');
 
 Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:0'])->group(function () {
-    Route::get('/staff/create', [Scheduler::class, 'create'])->name('staff.create');
-    Route::post('/staff', [Scheduler::class, 'store'])->name('staff.store');
-    Route::delete('/staff', [Scheduler::class, 'delete'])->name('staff.delete');
+    Route::get('/staff/create', [StaffController::class, 'create'])->name('staff.create');
+    Route::post('/staff', [StaffController::class, 'store'])->name('staff.store');
+    Route::delete('/staff', [StaffController::class, 'delete'])->name('staff.delete');
 });
 
 Route::get("/employee/{id}", [Employees::class,"profiles"]);
@@ -82,9 +83,9 @@ Route::get("/employee/{id}", [Employees::class,"profiles"]);
 Route::get("/structures/{id}", [Structures::class,"facilities"]);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [StaffController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [StaffController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [StaffController::class, 'destroy'])->name('profile.destroy');
 });
 
 Route::put('/employee/change-role/{id}', 'App\Http\Controllers\Employees@changeRole');
