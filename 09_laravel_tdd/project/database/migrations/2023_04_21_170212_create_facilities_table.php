@@ -17,9 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer(column: 'facility_nr')->unique();
-            $table->string('street')->nullable();
-            $table->string('city')->nullable();
-            $table->string('postcode')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('adress')->nullable();
+            $table->string('miejsca')->nullable();
+            $table->string('szefu')->nullable();
+            $table->string('zdjecie')->nullable();
             $table->timestamps();
         });
     }

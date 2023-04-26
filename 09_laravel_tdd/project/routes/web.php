@@ -79,6 +79,8 @@ Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:0'])->group(funct
 
 Route::get("/employee/{id}", [Employees::class,"profiles"]);
 
+Route::get("/structures/{id}", [Structures::class,"facilities"]);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
