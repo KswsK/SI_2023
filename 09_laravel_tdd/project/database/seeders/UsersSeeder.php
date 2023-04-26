@@ -39,15 +39,6 @@ class UsersSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Jan Piotr',
-            'login' => 'jpiotr',
-            'email' => 'jan.piotr@gmail.com',
-            'password' => bcrypt('secret'),
-            'role' => 2,
-            'facility' => 2
-        ]);
-
-        DB::table('users')->insert([
             'name' => 'Krzysztof Buła',
             'login' => 'kbula',
             'email' => 'kbula@gmail.com',
