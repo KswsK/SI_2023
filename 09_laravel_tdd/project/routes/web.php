@@ -9,6 +9,7 @@ use App\Http\Controllers\EmployeeScheduleController;
 use App\Http\Controllers\RoomScheduleController;
 use App\Http\Controllers\Products;
 use App\Http\Controllers\Employees;
+use App\Http\Controllers\myObject;
 use App\Http\Middleware\RoleMiddleware;
 
 
@@ -57,6 +58,10 @@ Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:4'])->group(funct
 
 Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:5'])->group(function () {
     Route::get('/raports', [Raports::class, 'show'])->name('raports');
+})->middleware(['auth', 'verified']);
+
+Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:2'])->group(function () {
+    Route::get('/mojobiekt', [myObject::class, 'show'])->name('mojobiekt');
 })->middleware(['auth', 'verified']);
 
 Route::get('/staff', 'App\Http\Controllers\StaffController@create')->name('staff');
