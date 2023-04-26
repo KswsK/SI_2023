@@ -10,6 +10,7 @@ use App\Http\Controllers\RoomScheduleController;
 use App\Http\Controllers\Products;
 use App\Http\Controllers\Employees;
 use App\Http\Controllers\Structures;
+use App\Http\Controllers\myObject;
 use App\Http\Middleware\RoleMiddleware;
 
 
@@ -64,6 +65,10 @@ Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:5'])->group(funct
     Route::get('/raports', [Raports::class, 'show'])->name('raports');
 })->middleware(['auth', 'verified']);
 
+Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:2'])->group(function () {
+    Route::get('/mojobiekt', [myObject::class, 'show'])->name('mojobiekt');
+})->middleware(['auth', 'verified']);
+
 Route::get('/staff', 'App\Http\Controllers\StaffController@create')->name('staff');
 
 Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:0'])->group(function () {
@@ -79,5 +84,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::put('/employee/change-role/{id}', 'App\Http\Controllers\Employees@changeRole');
 
 require __DIR__.'/auth.php';
