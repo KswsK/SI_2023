@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,16 +13,40 @@
         </h2>
     </x-slot>
 
-
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900">
-                        {{ __("You're logged in!") }}
-                    </div>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    {{ __("You're logged in!") }}
                 </div>
             </div>
         </div>
+    </div>
+
+    @section('content')
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="mt-8 mb-8 card">
+                        <dl>
+                            @foreach($products as $product)
+                                @if($product)
+                                <div class="flex flex-col pb-3">
+                                    <dt class="mt-4 text-gray-500">
+                                        id={{$product->id}}, facility_id={{$product->facility_id}}
+                                    </dt>
+                                    <dd class="mb-3 text-base">
+                                    {{$product->name}}, ilosc={{$product->qty}}
+                                    </dd>
+                                    <hr>
+                                </div>
+                                    @endif
+                            @endforeach
+                        </dl>
+                </div>
+            </div>
+        </div>
+    @endsection
 
 </x-app-layout>
 </body>

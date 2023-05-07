@@ -23,8 +23,10 @@ class RoleMiddleware
             return redirect('/login');
         }
 
+        $usrRole = $user->role;
+
         foreach ($roles as $role) {
-            if ($user->role == $role) {
+            if ($usrRole == $role) {
                 return $next($request);
             }
         }

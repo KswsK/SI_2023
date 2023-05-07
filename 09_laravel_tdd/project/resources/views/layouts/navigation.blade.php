@@ -71,6 +71,9 @@
                                 {{ __('Mój Obiekt') }}
                             </x-nav-link>
                         </div>
+                        <x-nav-link :href="route('stockStatus')" :active="request()->routeIs('stockStatus')">
+                            {{ __('Stan produktów') }}
+                        </x-nav-link>
                     @endif
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
                     <x-dropdown align="right" width="48">
