@@ -46,8 +46,12 @@ Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:1'])->group(funct
     Route::get('/scheduler', [Scheduler::class, 'show'])->name('scheduler');
 })->middleware(['auth', 'verified']);
 
-Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:1'])->group(function () {
+Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:1, 2'])->group(function () {
     Route::get('/stockStatus', [StockStatusController::class, 'show'])->name('stockStatus');
+})->middleware(['auth', 'verified']);
+
+Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:0'])->group(function () {
+    Route::get('/stockStatus/{id}', [StockStatusController::class, 'showForFacility'])->name('stockStatus');
 })->middleware(['auth', 'verified']);
 
 Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:3'])->group(function () {
