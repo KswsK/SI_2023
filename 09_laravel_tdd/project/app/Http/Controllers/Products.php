@@ -23,11 +23,19 @@ class Products extends Controller
         }
 
         // kierownik-2
-        $rolesArr = array(2, 1);
-        if (in_array(auth()->user()->role, $rolesArr)) {
+        if (auth()->user()->role==2) {
             $user = auth()->user();
             if ($user instanceof User) {
-                $products = $this->getProductsByUser($user);
+                $products = $this->getProductsByUser1($user);
+                return view('products.show')->with('products', $products);
+            }
+        }
+
+        // user 1
+        if (auth()->user()->role==1) {
+            $user = auth()->user();
+            if ($user instanceof User) {
+                $products = $this->getProductsByUser1($user);
                 return view('products.show')->with('products', $products);
             }
         }
@@ -35,11 +43,11 @@ class Products extends Controller
         abort(403);
     }
 
-    private function getFacilityByUser(User $user): ?Facility
+    private function getFacilityByUser1(User $user): ?Facility
     {
         if (isset($user)) {
             $el = Facility::query()
-                ->where('szefu', $user->getAttribute('name'))
+                ->where('id', $user->getAttribute('facility'))
                 ->get()->first();
             if (isset($el)) {
                 if ($el instanceof Facility) {
@@ -50,12 +58,37 @@ class Products extends Controller
         return null;
     }
 
+
+//    private function getFacilityByUser2(User $user): ?Facility
+//    {
+//        if (isset($user)) {
+//            $el = Facility::query()
+//                ->where('szefu', $user->getAttribute('name'))
+//                ->get()->first();
+//            if (isset($el)) {
+//                if ($el instanceof Facility) {
+//                    return $el;
+//                }
+//            }
+//        }
+//        return null;
+//    }
+
     /**
      * @return Products[]
      */
-    private function getProductsByUser(User $user): ?array
+    private function getProductsByUser1(User $user): ?array
     {
-        $facility = $this->getFacilityByUser($user);
+        $facility = $this->getFacilityByUser1($user);
+        return $this->getProductsByFacility($facility);
+    }
+
+    /**
+     * @return Products[]
+     */
+    private function getProductsByUser2(User $user): ?array
+    {
+        $facility = $this->getFacilityByUser2($user);
         return $this->getProductsByFacility($facility);
     }
 
