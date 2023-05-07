@@ -62,7 +62,7 @@ class Products extends Controller
     /**
      * @return Products[]
      */
-    private function getProductsByFacility(Facility $facility): ?array
+    private function getProductsByFacility(?Facility $facility): ?array
     {
         $products = array();
         if (isset($facility)) {

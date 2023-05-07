@@ -33,7 +33,7 @@
                                 @if($product)
                                 <div class="flex flex-col pb-3">
                                     <dt class="mt-4 text-gray-500">
-                                        id={{$product->id}}, facility_id={{$product->facility_id}}, dir={{$product->facility_dir_name}}
+                                        id={{$product->id}}, facility_id={{$product->facility_id}}
                                     </dt>
                                     <dd class="mb-3 text-base">
                                     {{$product->name}}, ilosc={{$product->qty}}

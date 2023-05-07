@@ -21,7 +21,6 @@ class ProductsSeeder extends Seeder
 
         DB::table('products')->insert([
             'facility_id' => '1',
-            'facility_dir_name' => 'John Doe',
             'id' => '1',
             'name' => 'kreda',
             'qty' => 3
@@ -29,10 +28,23 @@ class ProductsSeeder extends Seeder
 
         DB::table('products')->insert([
             'facility_id' => '1',
-            'facility_dir_name' => 'John Doe',
             'id' => '2',
             'name' => 'papier A4 ryza',
             'qty' => 6
+        ]);
+
+        DB::table('products')->insert([
+            'facility_id' => '2',
+            'id' => '3',
+            'name' => 'papier A4 ryza',
+            'qty' => 3
+        ]);
+
+        DB::table('products')->insert([
+            'facility_id' => '2',
+            'id' => '4',
+            'name' => 'ołówki',
+            'qty' => 3
         ]);
     }
 }

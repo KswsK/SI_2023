@@ -15,12 +15,10 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->integer('facility_id');
-            $table->string('facility_dir_name');
             $table->id()->unique();
             $table->string('name');
             $table->integer('qty');
             //facility_id, int
-            //facility_director_name, string
             //(product) id, int
             //(product) name, string
             //(product) qty, int
