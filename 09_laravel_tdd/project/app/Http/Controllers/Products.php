@@ -27,23 +27,13 @@ class Products extends Controller
         if (in_array(auth()->user()->role, $rolesArr)) {
             $user = auth()->user();
             if ($user instanceof User) {
-                $products = $this->getProducts($user);
+                $products = $this->getProductsByUser($user);
                 return view('products.show')->with('products', $products);
             }
         }
 
         abort(403);
     }
-
-//    public function showForFacility(int $facility_id)
-//    {
-//        if (!auth()->user()) {
-//            abort(403);
-//        }
-//
-//        $products = $this->getProductsByFacilityId($facility_id);
-//        return view('products.show')->with('products', $products);
-//    }
 
     private function getFacilityByUser(User $user): ?Facility
     {
@@ -60,21 +50,6 @@ class Products extends Controller
         return null;
     }
 
-//    private function getFacilityById(int $id): ?Facility
-//    {
-//        if (isset($id)) {
-//            $el = Facility::query()
-//                ->where('id', $id)
-//                ->get()->first();
-//            if (isset($el)) {
-//                if ($el instanceof Facility) {
-//                    return $el;
-//                }
-//            }
-//        }
-//        return null;
-//    }
-
     /**
      * @return Products[]
      */
@@ -83,16 +58,6 @@ class Products extends Controller
         $facility = $this->getFacilityByUser($user);
         return $this->getProductsByFacility($facility);
     }
-
-//    /**
-//     * @return Products[]
-//     */
-//    private function getProductsByFacilityId(int $id): ?array
-//    {
-//        $facility = $this->getFacilityById($id);
-//        return $this->getProductsByFacility($facility);
-//    }
-
 
     /**
      * @return Products[]

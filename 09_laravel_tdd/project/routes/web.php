@@ -50,10 +50,6 @@ Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:1, 2'])->group(fu
     Route::get('/stockStatus', [StockStatusController::class, 'show'])->name('stockStatus');
 })->middleware(['auth', 'verified']);
 
-//Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:0'])->group(function () {
-//    Route::get('/stockStatus/{id}', [StockStatusController::class, 'showForFacility'])->name('stockStatus');
-//})->middleware(['auth', 'verified']);
-
 Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:3'])->group(function () {
     Route::get('/employeeSchedule', [EmployeeScheduleController::class, 'show'])->name('employeeSchedule');
 })->middleware(['auth', 'verified']);
