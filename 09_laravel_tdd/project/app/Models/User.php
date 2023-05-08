@@ -13,6 +13,12 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
 
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'facility_id', 'facility');
+    }
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -23,6 +29,7 @@ class User extends Authenticatable
         'login',
         'email',
         'password',
+        'facility',
         'street',
         'city',
         'postcode',

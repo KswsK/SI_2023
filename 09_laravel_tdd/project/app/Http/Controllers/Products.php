@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Product;
 use App\Models\Facility;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class Products extends Controller
@@ -42,6 +43,53 @@ class Products extends Controller
 
         abort(403);
     }
+
+//  zwracanie widoku z formem  i dodawanie produktow do bazy
+    public function create(): mixed
+    {
+        return view('products.create');
+    }
+
+    public function store(Request $request): mixed
+    {
+        // Validation rules for the form data
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'qty' => 'required|integer|min:0',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $name = $request->input('name');
+        $qty = $request->input('qty');
+        $facility_id = Auth::user()->facility;
+
+        // Check if the product with the same name and facility_id already exists
+        $product = Product::where('name', $name)
+            ->where('facility_id', $facility_id)
+            ->first();
+
+        if ($product) {
+            // If the product exists, update its quantity
+            $product->qty += $qty;
+        } else {
+            // If the product doesn't exist, create a new one
+            $product = new Product;
+            $product->facility_id = $facility_id;
+            $product->name = $name;
+            $product->qty = $qty;
+        }
+
+        $product->save();
+
+        // Redirect the user to the products with a success message
+        return redirect()->route('products')->with('success', 'Product updated successfully.');
+    }
+
+
+
 
     private function getFacilityByUser1(User $user): ?Facility
     {

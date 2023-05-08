@@ -60,6 +60,8 @@ Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:3'])->group(funct
 
 Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:4'])->group(function () {
     Route::get('/products', [Products::class, 'show'])->name('products');
+    Route::get('/products/create', [Products::class, 'create'])->name('products.create');
+    Route::post('/products', [Products::class, 'store'])->name('products.store');
 })->middleware(['auth', 'verified']);
 
 Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:5'])->group(function () {
@@ -87,6 +89,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [StaffController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [StaffController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 Route::put('/employee/change-role/{id}', 'App\Http\Controllers\Employees@changeRole');
 
