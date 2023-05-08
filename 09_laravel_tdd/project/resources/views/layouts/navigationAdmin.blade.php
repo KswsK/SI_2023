@@ -25,6 +25,11 @@
                             {{ __('Moje obiekty') }}
                         </x-nav-link>
                     </div>
+                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <x-nav-link :href="route('products')" :active="request()->routeIs('products')">
+                            {{ __('Stan produktów') }}
+                        </x-nav-link>
+                    </div>
 
 
               </a>

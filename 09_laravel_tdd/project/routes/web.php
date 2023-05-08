@@ -62,6 +62,10 @@ Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:4'])->group(funct
     Route::get('/products', [Products::class, 'show'])->name('products');
 })->middleware(['auth', 'verified']);
 
+Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:0'])->group(function () {
+    Route::get('/products', [Products::class, 'show'])->name('products');
+})->middleware(['auth', 'verified']);
+
 Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:5'])->group(function () {
     Route::get('/raports', [Raports::class, 'show'])->name('raports');
 })->middleware(['auth', 'verified']);
@@ -69,6 +73,7 @@ Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:5'])->group(funct
 Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:2'])->group(function () {
     Route::get('/mojobiekt', [myObject::class, 'show'])->name('mojobiekt');
 })->middleware(['auth', 'verified']);
+
 
 Route::get('/staff', 'App\Http\Controllers\StaffController@create')->name('staff');
 
