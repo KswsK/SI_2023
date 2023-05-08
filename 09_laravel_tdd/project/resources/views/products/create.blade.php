@@ -39,16 +39,16 @@
                     <form method="POST" action="{{ route('products.store') }}">
                         @csrf
                         <div class="mb-4">
-                            <h2 class="text-lg font-medium text-gray-900">{{ __('Product Name') }}</h2>
+                            <h2 class="text-lg font-medium text-gray-900">{{ __('Nazwa produktu:') }}</h2>
                             <x-text-input type="text" name="name" id="name" required/>
                         </div>
 
                         <div class="mb-4">
-                            <h2 class="text-lg font-medium text-gray-900">{{ __('Quantity') }}</h2>
+                            <h2 class="text-lg font-medium text-gray-900">{{ __('Ilość:') }}</h2>
                             <x-text-input type="number" name="qty" id="qty" min="0" required/>
                         </div>
 
-                        <x-primary-button type="submit">{{ __('Add Product') }}</x-primary-button>
+                        <x-primary-button type="submit">{{ __('Dodaj produkt') }}</x-primary-button>
                     </form>
                 </div>
             </div>

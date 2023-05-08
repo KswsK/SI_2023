@@ -31,10 +31,11 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="mt-8 mb-8 card">
+                        @if (Auth::user()->role == 4)
                         <x-primary-button onclick="window.location.href='{{ route('products.create') }}'">
-                            {{ __('Add Product') }}
+                            {{ __('Nowy produkt') }}
                         </x-primary-button>
-
+                        @endif
 
                         <dl>
                             @foreach($products as $product)
