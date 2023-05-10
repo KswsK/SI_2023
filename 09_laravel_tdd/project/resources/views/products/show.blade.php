@@ -6,7 +6,6 @@
 </head>
 <body>
 {{--@include('layouts/navigation')--}}
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -36,6 +35,11 @@
                             {{ __('Nowy produkt') }}
                         </x-primary-button>
                         @endif
+                            @if (Auth::user()->role == 1)
+                                <x-primary-button onclick="window.location.href='{{ route('products.delete') }}'">
+                                    {{ __('Usuń produkt') }}
+                                </x-primary-button>
+                            @endif
 
                         <dl>
                             @foreach($products as $product)
