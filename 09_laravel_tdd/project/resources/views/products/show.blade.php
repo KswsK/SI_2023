@@ -6,6 +6,7 @@
 </head>
 <body>
 {{--@include('layouts/navigation')--}}
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -24,10 +25,18 @@
     </div>
 
     @section('content')
+
+
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="mt-8 mb-8 card">
+                        @if (Auth::user()->role == 4)
+                        <x-primary-button onclick="window.location.href='{{ route('products.create') }}'">
+                            {{ __('Nowy produkt') }}
+                        </x-primary-button>
+                        @endif
+
                         <dl>
                             @foreach($products as $product)
                                 @if($product)
