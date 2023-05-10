@@ -8,6 +8,7 @@ use App\Models\Facility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\View\View;
 
 class Products extends Controller
 {
@@ -22,6 +23,7 @@ class Products extends Controller
         if (in_array(auth()->user()->role, $rolesArr)) {
             return view('products.show')->with('products', Product::all());
         }
+
 
         // kierownik-2
         if (auth()->user()->role==2) {
@@ -88,6 +90,60 @@ class Products extends Controller
         return redirect()->route('products')->with('success', 'Product updated successfully.');
     }
 
+    //  zwracanie widoku z formem  i usuwanie produktow z bazy
+    public function pokazdelete(): mixed
+    {
+        return view('products.delete');
+    }
+
+    public function usun(): mixed
+    {
+        $user = auth()->user();
+        $products = $this->getProductsByUser1($user);
+        return view('products.delete')->with("products", $products);
+    }
+
+
+    public function delete(Request $request): mixed
+    {
+        // Validation rules for the form data
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'qty' => 'required|integer|min:0',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $name = $request->input('name');
+        $qty = $request->input('qty');
+        $facility_id = Auth::user()->facility;
+
+        // Check if the product with the same name and facility_id already exists
+        $product = Product::where('name', $name)
+            ->where('facility_id', $facility_id)
+            ->first();
+
+        if ($product) {
+            // If the product exists and its quantity is greater than 0, update its quantity
+            if ($product->qty > 0) {
+                $product->qty -= $qty;
+                if($product->qty < 0) {
+                    $product->qty = 0;
+                }
+            } else {
+                return redirect()->back()->with('error', 'Ilość produktu wynosi 0. Wybierz inny produkt.');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Produkt nie istnieje. Wybierz inny produkt.');
+        }
+
+        $product->save();
+
+        // Redirect the user to the products with a success message
+        return redirect()->route('products')->with('success', 'Product deleted successfully.');
+    }
 
 
 

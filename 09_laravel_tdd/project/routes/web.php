@@ -58,10 +58,12 @@ Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:3'])->group(funct
     Route::get('/roomSchedule', [RoomScheduleController::class, 'show'])->name('roomSchedule');
 })->middleware(['auth', 'verified']);
 
-Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:4,0'])->group(function () {
+Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:4,0,1'])->group(function () {
     Route::get('/products', [App\Http\Controllers\Products::class, 'show'])->name('products');
     Route::get('/products/create', [App\Http\Controllers\Products::class, 'create'])->name('products.create');
     Route::post('/products', [App\Http\Controllers\Products::class, 'store'])->name('products.store');
+    Route::post('/products/delete', [App\Http\Controllers\Products::class, 'delete'])->name('products.delete');
+    Route::get('/products/delete', [App\Http\Controllers\Products::class, 'pokazdelete'])->name('products.delete');
 })->middleware(['auth', 'verified']);
 
 

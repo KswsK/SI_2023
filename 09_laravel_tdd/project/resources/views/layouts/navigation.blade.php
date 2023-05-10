@@ -27,13 +27,15 @@
 
             <!-- Settings Dropdown -->
             @if(isset(Auth::user()->login))
-                @if(auth()->user()->role == 4)
+                @if(auth()->user()->role == 4 || auth()->user()->role == 1)
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
                         <x-nav-link :href="route('products')" :active="request()->routeIs('products')">
                             {{ __('Produkty') }}
                         </x-nav-link>
                     </div>
+
                 @endif
+
                 @if(auth()->user()->role == 3)
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
                         <x-nav-link :href="route('roomSchedule')" :active="request()->routeIs('roomSchedule')">
@@ -50,11 +52,6 @@
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
                     <x-nav-link :href="route('scheduler')" :active="request()->routeIs('scheduler')">
                         {{ __('Harmonogram') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden sm:flex sm:items-center sm:ml-6">
-                    <x-nav-link :href="route('stockStatus')" :active="request()->routeIs('stockStatus')">
-                        {{ __('Stan produktów') }}
                     </x-nav-link>
                 </div>
                     @endif
