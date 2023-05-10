@@ -58,15 +58,12 @@ Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:3'])->group(funct
     Route::get('/roomSchedule', [RoomScheduleController::class, 'show'])->name('roomSchedule');
 })->middleware(['auth', 'verified']);
 
-Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:4'])->group(function () {
-    Route::get('/products', [Products::class, 'show'])->name('products');
-    Route::get('/products/create', [Products::class, 'create'])->name('products.create');
-    Route::post('/products', [Products::class, 'store'])->name('products.store');
+Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:4,0'])->group(function () {
+    Route::get('/products', [App\Http\Controllers\Products::class, 'show'])->name('products');
+    Route::get('/products/create', [App\Http\Controllers\Products::class, 'create'])->name('products.create');
+    Route::post('/products', [App\Http\Controllers\Products::class, 'store'])->name('products.store');
 })->middleware(['auth', 'verified']);
 
-Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:0'])->group(function () {
-    Route::get('/products', [Products::class, 'show'])->name('products');
-})->middleware(['auth', 'verified']);
 
 Route::middleware(['auth', 'App\Http\Middleware\RoleMiddleware:5'])->group(function () {
     Route::get('/raports', [Raports::class, 'show'])->name('raports');
